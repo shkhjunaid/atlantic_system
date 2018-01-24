@@ -411,7 +411,7 @@
         var mbf = footage / 1000;
         var price = $("#price" + id).val();
 
-        var deposit = price * mbf;
+        var deposit = (price * mbf).toFixed(2);
 
         $("#deposit" + id).val(deposit);
 
@@ -433,7 +433,7 @@
 
                     total_price = document.getElementById('deposit' + i).value;
 
-                    a_price = +total_price + +a_price;
+                    a_price = (+total_price + +a_price).toFixed(2);
                 }
                 else {
 
@@ -468,7 +468,7 @@
                 }
             }
         }
-        $("#total_units").val(a_footage);
+        $("#total_units").val(a_footage.toFixed(2));
 
     }
 </script>
@@ -488,7 +488,7 @@
     var counter = 2;
     $(addButton).click(function () {
         //alert("asasas");
-        var fieldHTML = '<tr class="r"><td class="text-center border_right_td"><textarea class="static_width_td" placeholder="Description" name="description" id="description' + counter + '"></textarea></td><td width="12%" class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="quantity" id="quantity' + counter + '" onkeypress="validation_numeric(event)"/></td><td width="12%" class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="footage" id="footage' + counter + '" onkeyup="Total(' + counter + ')" onkeypress="validation_numeric(event)" /></td><td width="12%" class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="price" id="price' + counter + '" onkeyup="Total(' + counter + ')" onkeypress="validation_numeric(event)" /></td><td width="12%" class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="deposit" id="deposit' + counter + '" readonly/></td><td width="9%" class="text-center border_right_td"><a class="m-l-10 plus_hover add_button" href="javascript:;"><i class="fa fa-plus" aria-hidden="true"></i></a><a class="m-l-10 remove_button" id="' + counter + '" href="#"><i class="fa fa-trash-o red_color" aria-hidden="true"></i></a></td></tr>'
+        var fieldHTML = '<tr class="r"><td class="text-center border_right_td"><textarea class="static_width_td" placeholder="Description" name="description" id="description' + counter + '"></textarea></td><td width="12%" class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="quantity" id="quantity' + counter + '" onkeypress="validation_numeric(event)"/></td><td width="12%" class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="footage" id="footage' + counter + '" onkeyup="Total(' + counter + ')" onkeypress="validation_numeric(event)" /></td><td width="12%" class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="price" id="price' + counter + '" onkeyup="Total(' + counter + ')" onkeypress="validation_numeric(event)" /></td><td width="12%" class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="deposit" id="deposit' + counter + '" readonly/></td><td width="9%" class="text-center border_right_td"><a class="m-l-10 plus_hover add_button" href="javascript:;"><i class="fa fa-plus" aria-hidden="true"></i></a><a href="javascript:;" class="m-l-10 remove_button" id="' + counter + '" href="#"><i class="fa fa-trash-o red_color" aria-hidden="true"></i></a></td></tr>'
         $(wrapper).append(fieldHTML);
 
         counter = +counter + +1;
@@ -522,6 +522,7 @@
     @*------------------------CALCULATE PRICES ON REMOVE ---------------------*@
 
     function Total_Remove(id, deleted_row_id) {
+        
         var row_count = $("#rowCounter").val();
 
         row_count = row_count - 1;
@@ -537,7 +538,7 @@
             var mbf = footage / 1000;
             var price = $("#price" + id).val();
 
-            var deposit = price * mbf;
+            var deposit = (price * mbf).toFixed(2);
 
             $("#deposit" + id).val(deposit);
 
@@ -563,7 +564,7 @@
 
                     total_price = document.getElementById('deposit' + i).value;
 
-                    a_price = +total_price + +a_price;
+                    a_price = (+total_price + +a_price).toFixed(2);
                 }
                 else {
 
@@ -573,13 +574,17 @@
 
         }
 
+        //alert("For 1 " + row_count);
+
         $("#total_deposit").val(a_price);
 
         var check2 = 0;
         var total_footage = 0;
         var a_footage = 0;
-
+        
         for (i = 1; i <= row_count + 1 ; i++) {
+
+            //alert("For 2 " + id);
 
             if (i == deleted_row_id) {
                 continue;
@@ -602,7 +607,8 @@
                 }
             }
         }
-        $("#total_units").val(a_footage);
+        
+        $("#total_units").val(a_footage.toFixed(2));
 
     }
 
