@@ -1,0 +1,138 @@
+﻿@model List<Atlantic_Project.Models.Atlantic_Invoice>
+
+<body class="fix-header fix-sidebar card-no-border">
+  
+    <div id="main-wrapper">
+        
+        @{
+            Html.RenderPartial("Header");
+        }
+        
+        @{
+            Html.RenderPartial("Side_Navigation");
+        }
+        
+        <div class="page-wrapper" style="">
+
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-themecolor">List of Atlantic Invoices</h3>
+                </div>
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="~/Admin/Index">Home</a></li>
+                        <li class="breadcrumb-item">Main Menu</li>
+                        <li class="breadcrumb-item custom_lime_green active">List of Invoices</li>
+                    </ol>
+                </div>
+
+            </div>
+
+            <div class="container-fluid">
+                <div class="card col-md-12 col-lg-12">
+                    <div class="card-body">
+
+
+                        <h3 class="card-title">Invoice's List</h3>
+                        <div class="table-responsive m-t-10">
+                            <table id="myTable" class="table full-color-table full-brown-table hover-table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Invoice</th>
+                                        <th class="text-center">Sold To</th>
+                                        <th class="text-center">Ship To</th>
+                                        <th class="text-center">Total Amount</th>
+                                        <th class="text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var v in Model)
+                                    {
+                                        <tr>
+                                            <td class="text-center">@v.Id</td>
+                                            <td class="text-center">@v.Sold_Name</td>
+                                            <td class="text-center">@v.Ship_Name</td>
+                                            <td class="text-center">$ @v.Total_Deposit</td>
+
+                                            <td class="text-center actions_style_width">
+                                                <a class="m-l-10 eye_hover" href="~/Atlantic/Print_Invoice/@v.Id" target="_blank"><i class="fa fa-print" aria-hidden="true"></i></a>
+                                                <a class="m-l-10" href="~/Atlantic/Delete/@v.Id"><i class="fa fa-trash-o red_color" aria-hidden="true"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+
+
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="clear"></div>
+
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                $('#myTable').DataTable();
+                $(document).ready(function () {
+                    var table = $('#example').DataTable({
+                        "columnDefs": [{
+                            "visible": false,
+                            "targets": 2
+                        }],
+                        "order": [
+                            [2, 'asc']
+                        ],
+                        "displayLength": 25,
+                        "drawCallback": function (settings) {
+                            var api = this.api();
+                            var rows = api.rows({
+                                page: 'current'
+                            }).nodes();
+                            var last = null;
+                            api.column(2, {
+                                page: 'current'
+                            }).data().each(function (group, i) {
+                                if (last !== group) {
+                                    $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                    last = group;
+                                }
+                            });
+                        }
+                    });
+                    // Order by the grouping
+                    $('#example tbody').on('click', 'tr.group', function () {
+                        var currentOrder = table.order()[0];
+                        if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                            table.order([2, 'desc']).draw();
+                        } else {
+                            table.order([2, 'asc']).draw();
+                        }
+                    });
+                });
+            });
+            $('#example23').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        </script>
+
+
+
+      
+      
+    </div>
+    
+    @{
+        Html.RenderPartial("Footer");
+    }
+
+</body>

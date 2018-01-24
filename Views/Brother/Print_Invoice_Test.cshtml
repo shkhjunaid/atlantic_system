@@ -1,0 +1,472 @@
+﻿@model Atlantic_Project.Models.Brother_Invoice
+
+<!doctype html>
+<html>
+<head>
+    <title>invoice sample(1)</title>
+    <style type="text/css">
+        body {
+            font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+        }
+
+        .invoice-container {
+            width: 100%;
+            margin: -20px auto 0;
+            border: 1px solid #fff;
+            position: relative;
+            color: #000000;
+            /*font-size:13px;*/
+        }
+
+        .logo {
+            position: absolute;
+            left: 0;
+            top: 15px;
+            width: 180px;
+            height: 52px;
+        }
+
+        .head {
+            text-align: center;
+            font-size: 28px;
+        }
+
+        .contact-details {
+            line-height: 25px;
+        }
+
+        .pull-right {
+            float: right;
+        }
+
+        .pull-left {
+            float: left;
+        }
+
+        .clearfix {
+            clear: both;
+        }
+
+        .infotablefirst,
+        .infotablesecond,
+        .infotablethird {
+            font-weight: bold;
+        }
+
+        /*.infotablesecond {
+            background-color: #bfbfbf;
+        }*/
+
+        .bgcolor {
+            background-color: #bfbfbf !important;
+        }
+
+        .sold_table_class {
+            width: 60%;
+            font-size: 13px;
+        }
+
+        .detail-info,
+        .table_print_invoice {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .table_first_row {
+            text-transform: uppercase;
+            background-color: #bfbfbf !important;
+            color: #000;
+            font-weight: bold;
+            text-align: center;
+            height: 24px;
+        }
+
+        .bg_color_print {
+            background-color: #bfbfbf !important;
+        }
+
+        .tbl-image {
+            margin: 5px 0 1px;
+            width: 30px;
+            height: 22px;
+            border-radius: 25%;
+        }
+
+        .infotablefirst tr td,
+        .infotablesecond tr td,
+        .infotablethird tr td,
+        .table_print_invoice tr td,
+        .infotablefifth tr td {
+            padding-left: 5px !important;
+        }
+
+        .font_size_unbold {
+            font-size: 14px !important;
+        }
+
+        .font_size_bold {
+            font-size: 11px !important;
+        }
+
+        .font_size_sold_ship_bold {
+            font-size: 13px !important;
+            font-weight: bold !important;
+        }
+
+
+        .terms_condition_font {
+            font-size: 9px !important;
+        }
+
+        .terms_condition_padding {
+            padding: 0 5px 0 5px !important;
+        }
+
+
+        .description_tr_font_size {
+            font-size: 14px !important;
+        }
+
+        .font_14_bold {
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+
+
+<body>
+
+    <div class="invoice-container">
+        <div class="top-head">
+
+            @*<img src="~/images/wood1.jpg" alt="" class="logo" />*@
+            <h2 class="head p-t-20">INVOICE</h2>
+        </div>
+        <div class="head-info p-t-20">
+
+            <p style="font-weight:bold;font-size:13px" class="contact-details pull-left pt_4 m-b-0">
+                @if (@ViewBag.Setting.Name != "")
+                {
+                    <span>@ViewBag.Setting.Name<br /></span>
+                }
+                @if (@ViewBag.Setting.House_Address != "")
+                {
+                    <span>@ViewBag.Setting.House_Address<br /></span>
+                }
+                @if (@ViewBag.Setting.Area_Address != "")
+                {
+                    <span>@ViewBag.Setting.Area_Address<br /></span>
+                }
+                @if (@ViewBag.Setting.Phone != "")
+                {
+                    <span>@ViewBag.Setting.Phone<br /></span>
+                }
+                @if (@ViewBag.Setting.Email != "")
+                {
+                    <span>@ViewBag.Setting.Email</span>
+                }
+
+
+
+
+
+
+            </p>
+
+            <div class="top-right-info pull-right">
+                <table cellpadding="5" cellspacing="5" border="1" class="infotablefirst pull-right">
+                    <tr style="">
+                        <td width="140px" class="font_14_bold bg_color_print">Invoice No:</td>
+                        <td width="150px" class="unbold font-14">@Model.Id</td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="font_14_bold bg_color_print">Date</td>
+                        <td class="unbold font-14">@Model.Invoice_Date</td>
+                    </tr>
+
+                </table>
+
+                <div class="clearfix"></div>
+                <div>&nbsp;</div>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <table cellpadding="5" cellspacing="0" class="sold_table_class pull-right">
+            <tr>
+                <td colspan="2" width="65%" style="padding-left:40px;">
+                    @if (Model.Sold_Name != "")
+                    {
+                        <span style="font-weight:bold">SOLD TO:<br />@Model.Sold_Name.ToUpper()</span>
+                    }
+                    <br /><br />
+                    @if (Model.Sold_House_Address != "")
+                    {
+                        <span>@Model.Sold_House_Address</span>
+                    }
+                    <br />
+                    @if (Model.Sold_Area_Address != "")
+                    {
+                        <span>@Model.Sold_Area_Address</span>
+                    }
+                    <br />
+                    @if (Model.Sold_Email != "")
+                    {
+                        <span style="color:blue;"><u>@Model.Sold_Email</u></span>
+                    }
+                    <br /><br /><br /><br />
+                </td>
+
+                <td colspan="2" width="100%" class="pull-right">
+                    @if (Model.Ship_Name != "")
+                    {
+                        <span style="font-weight:bold">SHIP TO:<br />@Model.Ship_Name.ToUpper()</span>
+                    }
+                    <br /><br />
+                    @if (Model.Ship_House_Address != "")
+                    {
+                        <span>@Model.Ship_House_Address</span>
+                    }
+                    <br />
+                    @if (Model.Ship_Area_Address != "")
+                    {
+                        <span>@Model.Ship_Area_Address</span>
+                    }
+                    <br />
+                    @if (Model.Ship_Email != "")
+                    {
+                        <span style="color:blue;"><u>@Model.Ship_Email</u></span>
+                    }
+                    <br /><br />
+                    @if (Model.Person_Name != "")
+                    {
+                        <span>@Model.Person_Name</span>
+                    }
+                    <br />
+                    @if (Model.Ship_Phone != "")
+                    {
+                        <span>@Model.Ship_Phone</span>
+                    }
+                    <br />
+                </td>
+            </tr>
+
+        </table>
+
+
+        <div class="clearfix"></div>
+
+        <div class="detail-info m-t-0">
+            <table cellpadding="0" cellspacing="0" border="1" class="table_print_invoice">
+                <tr class="table_first_row">
+                    <td width="20%">SHIP VIA</td>
+                    <td width="20%">F.O.B</td>
+                    <td width="20%">EST. SHIP DATE</td>
+                    <td width="20%">SLM</td>
+                    <td width="20%">CUST. P.O.#</td>
+
+                </tr>
+
+
+                <tr align="center" class="description_tr_font_size">
+
+                    @if (Model.Ship_Via != "")
+                    {
+                        <td>@Model.Ship_Via</td>
+                    }
+                    else
+                    {
+                        <td>-</td>
+                    }
+                    @if (Model.FOB != "")
+                    {
+                        <td>@Model.FOB</td>
+                    }
+                    else
+                    {
+                        <td>-</td>
+                    }
+                    @if (Model.Est_Ship_Date != "")
+                    {
+                        <td>@Model.Est_Ship_Date</td>
+                    }
+                    else
+                    {
+                        <td>-</td>
+                    }
+                    @if (Model.SLM != "")
+                    {
+                        <td>@Model.SLM</td>
+                    }
+                    else
+                    {
+                        <td>-</td>
+                    }
+                    @if (Model.Cust_PO != "")
+                    {
+                        <td>@Model.Cust_PO</td>
+                    }
+                    else
+                    {
+                        <td>-</td>
+                    }
+
+
+
+                </tr>
+
+            </table>
+
+        </div>
+
+
+
+
+
+
+
+        <div>&nbsp;</div>
+        <div class="detail-info">
+            <table cellpadding="0" cellspacing="0" border="1" class="table_print_invoice">
+                <tr class="table_first_row">
+                    <td width="25%">Terms</td>
+                    @if (Model.Terms != "")
+                    {
+                        <td width="25%" class="description_tr_font_size unbold" style="background-color:#FFF !important;">@Model.Terms</td>
+                    }
+                    else
+                    {
+                        <td width="25%" class="description_tr_font_size unbold" style="background-color:#FFF !important;">-</td>
+                    }
+                    <td width="25%">F &amp; C</td>
+                    @if (Model.FC != "")
+                    {
+                        <td width="25%" class="description_tr_font_size unbold" style="background-color:#FFF !important;">@Model.FC</td>
+                    }
+                    else
+                    {
+                        <td width="25%" class="description_tr_font_size unbold" style="background-color:#FFF !important;">-</td>
+                    }
+
+
+
+
+                </tr>
+            </table>
+
+        </div>
+
+
+        <div>&nbsp;</div>
+
+        <div class="detail-info">
+            <table cellpadding="0" cellspacing="0" border="1" class="table_print_invoice">
+                <tr class="table_first_row">
+                    <td width="40%">Items/Description</td>
+                    <td width="12%">Quantity</td>
+                    <td width="18%">Footage</td>
+                    <td width="18%">Price</td>
+                    <td width="12%">Amount</td>
+
+                </tr>
+                @foreach (var item in @ViewBag.products)
+                {
+
+                    <tr align="center" class="description_tr_font_size">
+
+                        <td>@item.Item_Description</td>
+                        <td>@item.Quantity PC</td>
+                        <td>@item.Footage BF</td>
+
+                        <td>@item.Price /MBF</td>
+                        <td>$ @item.Deposit</td>
+                    </tr>
+
+                }
+            </table>
+        </div>
+
+
+        <div class="clearfix"></div>
+        <div>&nbsp;</div>
+
+
+        <div class="divFooter">
+            <table cellpadding="0" cellspacing="0" border="1" class="table_print_invoice">
+                <tr class="table_first_row">
+                    <td width="22%">Total Freight</td>
+                    <td width="25%">Credit Card Fee</td>
+                    <td width="15%">Total Tax</td>
+                    <td width="20%">Total Units</td>
+                    <td width="20%">Total Amount</td>
+
+                </tr>
+
+
+                <tr align="center" class="description_tr_font_size">
+
+                    <td>@Model.Total_Freight</td>
+                    <td>@Model.Credit_Card_Fee</td>
+                    <td>@Model.Total_Tax</td>
+
+                    <td>@Model.Total_Units BF</td>
+                    <td>$ @Model.Total_Deposit</td>
+                </tr>
+
+            </table>
+
+
+
+
+        </div>
+
+        <div class="row p-t-10">
+            <div class="col-md-4"></div>
+            <div class="col-md-4" style="font-size:13px;font-weight:bold">
+                @*<p class="contact-details pull-left font-12 bold pt_4"></p>*@
+                @if (ViewBag.Setting.Name != "")
+                {
+                    <p align="center" class="m-b-0">@ViewBag.Setting.Name</p>
+                }
+                @if (ViewBag.Setting.Bank_Name != "")
+                {
+                    <p align="center" class="m-b-0">Bank: @ViewBag.Setting.Bank_Name</p>
+                }
+
+                @if (ViewBag.Setting.Swift_Code != "")
+                {
+                    <p align="center" class="m-b-0">Swift Code: @ViewBag.Setting.Swift_Code</p>
+                }
+                @if (ViewBag.Setting.Routing_Number != "")
+                {
+                    <p align="center" class="m-b-0">Routing Number: @ViewBag.Setting.Routing_Number</p>
+                }
+                @if (ViewBag.Setting.Account_Number != "")
+                {
+                    <p align="center" class="m-b-0">Account Number: @ViewBag.Setting.Account_Number</p>
+                }
+                @if (ViewBag.Setting.Bank_House_Address != "")
+                {
+                    <p align="center" class="m-b-0">@ViewBag.Setting.Bank_House_Address</p>
+                }
+                @if (ViewBag.Setting.Bank_Area_Address != "")
+                {
+                    <p align="center" class="m-b-0">@ViewBag.Setting.Bank_Area_Address</p>
+                }
+                @if (ViewBag.Setting.Bank_Phone != "")
+                {
+                    <p align="center" class="m-b-0" @ViewBag.Setting.Bank_Phone></p>
+                }
+            </div>
+            <div class="col-md-4"></div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

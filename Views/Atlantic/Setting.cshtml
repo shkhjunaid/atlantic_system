@@ -1,0 +1,201 @@
+﻿@model Atlantic_Project.Models.Atlantic_Setting
+<body class="fix-header fix-sidebar card-no-border" onload="SetDate()">
+
+    @{
+        Html.RenderPartial("Header");
+    }
+
+    @{
+        Html.RenderPartial("Side_Navigation");
+    }
+
+    <div class="page-wrapper">
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h3 class="text-themecolor">Atlantic Setting</h3>
+            </div>
+            <div class="col-md-7 align-self-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="~/Admin/Index">Home</a></li>
+                    <li class="breadcrumb-item">Main Menu</li>
+                    <li class="breadcrumb-item custom_lime_green active">Edit Atlantic Setting</li>
+                </ol>
+            </div>
+
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card card-outline-info">
+
+                        <div class="card-body">
+                            <form method="post" action="@Url.Action("Setting", "Atlantic")" data-parsley-validate class="" enctype="multipart/form-data">
+                                <div class="form-body">
+
+                                    <h3 class="box-title m-t-10">Atlantic Details</h3>
+                                    <hr>
+                                    <div class="row p-t-20">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Company Name</label>
+                                                <input type="text" name="name" id="name" class="form-control" required placeholder="Name" onkeypress="validation_alphabetical(event)" value="@Model.Name">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group ">
+                                                <label class="control-label">Address</label>
+                                                <input type="text" name="address_house" id="address_house" class="form-control" placeholder="Address" value="@Model.House_Address">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">City</label>
+                                                <input type="text" class="form-control" name="address_area" id="address_area" placeholder="Town, City" value="@Model.Area_Address">
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+
+                                    <div class="row p-t-10">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Email</label>
+                                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="@Model.Email">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Phone</label>
+                                                <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone" value="@Model.Phone" onkeypress="validation_phone(event)">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="m-t-30"></div>
+                                    <hr>
+                                    <h3 class="box-title m-t-10">Bank Details</h3>
+                                    <hr>
+                                    <div class="row p-t-20">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Bank</label>
+                                                <input type="text" name="bank" id="bank" class="form-control" required placeholder="Name" onkeypress="validation_alphabetical(event)" value="@Model.Bank_Name">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group ">
+                                                <label class="control-label">Swift Code</label>
+                                                <input type="text" name="swift" id="swift" class="form-control" placeholder="Swift Code" value="@Model.Swift_Code">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Routing Number</label>
+                                                <input type="text" class="form-control" name="routing" id="routing" placeholder="Routing Number" value="@Model.Routing_Number">
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+
+
+
+                                    <div class="row p-t-10">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Account Number</label>
+                                                <input type="text" class="form-control" name="account" id="account" placeholder="Account Number" value="@Model.Account_Number">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group ">
+                                                <label class="control-label">Address</label>
+                                                <input type="text" name="bank_address_house" id="bank_address_house" class="form-control" placeholder="Address" value="@Model.Bank_House_Address">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">City</label>
+                                                <input type="text" class="form-control" name="bank_address_area" id="bank_address_area" placeholder="Town, City" value="@Model.Bank_Area_Address">
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div class="row p-t-10">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Phone</label>
+                                                <input type="text" class="form-control" name="bank_phone" id="bank_phone" placeholder="Phone" value="@Model.Bank_Phone" onkeypress="validation_phone(event)">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="form-actions  m-t-40">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    @*<div class="col-md-4"></div>*@
+                                                    <div class="col-md-4">
+                                                        <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> Submit</button>
+                                                        <button type="button" class="btn btn-danger">Cancel</button>
+                                                    </div>
+                                                    @*<div class="col-md-4"></div>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <div style="margin-bottom:200px">
+                    </div>
+                    <div class="clear"></div>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+    @{
+    Html.RenderPartial("Footer");
+    }
+
+    <!-----------------------IMAGE VALIDATION----------------->
+
+
+</body>
+
+<!-- ============================VALIDATION EVENT================================== -->

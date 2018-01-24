@@ -1,0 +1,112 @@
+﻿<body class="background_image_sign_up" style="height:105% !important">
+
+    <div class="container">
+        <div class="row" style="padding-top:15px !important">
+            <div class="col-md-4"></div>
+
+
+
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="demo-form2" action="@Url.Action("Sign_Up_Create", "Admin")" method="post" data-parsley-validate class="" enctype="multipart/form-data">
+                            <h3 class="box-title m-b-20">Sign Up</h3>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <input class="form-control bg_white p-l-10" type="text" required placeholder="Name" name="name" onkeypress="validation_alphabetical(event)">
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="col-xs-12">
+                                    <input class="form-control bg_white p-l-10" type="email" required placeholder="Email" name="email">
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="col-xs-12">
+                                    <input class="form-control bg_white p-l-10" type="password" required placeholder="Password" name="password" id="password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <input class="form-control bg_white p-l-10" type="password" required placeholder="Confirm Password" id="confirm_password" onkeypress="confirm_pass(event)">
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="col-xs-12">
+                                    <input class="form-control bg_white p-l-10" type="text" required placeholder="CNIC" name="cnic" onkeypress="validation_cnic(event)">
+                                </div>
+                            </div>
+
+                            <div class="form-group ">
+                                <div class="col-xs-12">
+                                    <input class="form-control bg_white p-l-10" type="text" required placeholder="Address" name="address">
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="col-xs-12">
+                                    <input class="form-control bg_white p-l-10" type="text" required placeholder="Phone No" name="phone" onkeypress="validation_phone(event)">
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group text-center m-t-20">
+                                <div class="col-xs-12">
+                                    <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit" onclick="return check_password()">Sign Up</button>
+                                </div>
+                            </div>
+                            <div class="form-group m-b-0">
+                                <div class="col-sm-12 text-center">
+                                    <p>Already have an account? <a href="~/Home/Index" class="text-info m-l-5"><b>Sign In</b></a></p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+
+    <script>
+        function confirm_pass(e) {
+            if (e.keyCode === 13) {
+                e.preventDefault(); // Ensure it is only this code that rusn
+                check_password()
+
+            }
+        }
+
+        function check_password() {
+            var pass = $("#password").val();
+            var confirm = $("#confirm_password").val();
+
+            if (pass == confirm) {
+                //alert("MATCHED");
+                return true;
+            }
+            else {
+                //$("#password").val("");
+                $("#confirm_password").val("");
+                swal({
+                    title: "PASSWORD NOT MATCHED",
+                    text: "Please Enter the Correct Password",
+                    type: "warning",
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Okay',
+                },
+
+                        function () {
+                        });
+                return false;
+
+            }
+
+        }
+
+    </script>
+
+</body>

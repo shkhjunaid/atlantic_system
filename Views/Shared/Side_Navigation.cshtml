@@ -1,0 +1,68 @@
+﻿<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- User profile -->
+        <div class="user-profile">
+            <!-- User profile image -->
+            <div class="profile-img border_none">
+                @*<img class="border_none" src="~/content/static_images_website/army_monogram.png" alt="user" />*@
+            </div>
+            <!-- User profile text-->
+            <div class="profile-text">
+                <h5>@Session["admin_name"]</h5>
+                
+                @*<h6 style="color:lightblue">@Session["username"]</h6>
+                <h6 style="color:lightblue">@Session["admin_id"]</h6>*@
+                <a href="~/Home/Index" class=""><i class="fa fa-power-off"></i></a>
+            </div>
+        </div>
+        <!-- End User profile text-->
+        <!-- Sidebar navigation--><!-- Sidebar navigation--><!-- Sidebar navigation--><!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+                <li class="nav-devider"></li>
+                <li>
+                    <a class="waves-effect waves-dark" href="~/Admin/Index" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Main Menu</span></a>
+                </li>
+
+                <li>
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fa fa-file-text-o"></i><span class="hide-menu">Invoices</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                      
+                      
+                        <li><a href="~/Atlantic/Create_Invoice">Atlantic Invoice</a></li>
+                        <li><a href="~/Brother/Create_Invoice">Brothers Invoice</a></li>
+                        
+                    </ul>
+                </li>
+                <li>
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fa fa-cogs"></i><span class="hide-menu">Settings</span></a>
+                    <ul aria-expanded="false" class="collapse">
+
+
+                        <li><a href="~/Atlantic/Setting">Atlantic Setting</a></li>
+                        <li><a href="~/Brother/Setting">Brothers Setting</a></li>
+
+                    </ul>
+                </li>
+
+              
+                    <li>
+                        <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">Admin</span></a>
+                        <ul aria-expanded="false" class="collapse">
+                            <li><a href="~/Admin/Sign_Up">Create Admin</a></li>
+                            @*<li><a href="~/Admin/List_Admin">List Admin</a></li>*@
+
+                        </ul>
+                    </li>
+                <li>
+                    <a class="waves-effect waves-dark" href="~/Admin/Formula" aria-expanded="false"><i class="fa fa-calculator"></i><span class="hide-menu">Formula</span></a>
+                </li>
+
+
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>

@@ -1,0 +1,198 @@
+﻿@model List<Atlantic_Project.Models.Admin>
+
+<body class="fix-header fix-sidebar card-no-border">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    @*<div class="preloader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+            </svg>
+        </div>*@
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        @{
+            Html.RenderPartial("Header");
+        }
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        @{
+            Html.RenderPartial("Side_Navigation");
+        }
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper" style="">
+
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-themecolor">List of Admins</h3>
+                </div>
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="~/Admin/Index">Home</a></li>
+                        <li class="breadcrumb-item">Main Menu</li>
+                        <li class="breadcrumb-item custom_lime_green active">List of Admin</li>
+                    </ol>
+                </div>
+
+            </div>
+
+            <div class="container-fluid">
+                <div class="card col-md-12 col-lg-12">
+                    <div class="card-body">
+
+
+                        <h3 class="card-title">Admin's List</h3>
+                        @*<h6 class="card-subtitle">Data table example</h6>*@
+                        <div class="table-responsive m-t-10">
+                            <table id="myTable" class="table full-color-table full-brown-table hover-table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Name</th>
+                                        <th class="text-center">Email</th>
+                                        <th class="text-center">CNIC</th>
+                                        <th class="text-center">Address</th>
+                                        <th class="text-center">Phone No</th>
+
+                                        <th class="text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var v in Model)
+                                    {
+                                        <tr>
+                                            <td class="text-center">@v.Name</td>
+                                            <td class="text-center">@v.Email</td>
+                                            <td class="text-center">@v.CNIC</td>
+                                            <td class="text-center">@v.Address</td>
+                                            <td class="text-center">@v.Phone_No</td>
+
+                                            <td class="text-center actions_style_width">
+                                                <a class="m-l-10 eye_hover" href="~/Admin/Edit_Sign_Up_Admin/@v.Id"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                <a class="m-l-10" href="~/Admin/Delete_Admin/@v.Id"><i class="fa fa-trash-o red_color" aria-hidden="true"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+
+
+
+                                </tbody>
+                            </table>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+
+               
+                <div class="clear"></div>
+
+            
+            <script>
+                $(document).ready(function () {
+                    $('#myTable').DataTable();
+                    $(document).ready(function () {
+                        var table = $('#example').DataTable({
+                            "columnDefs": [{
+                                "visible": false,
+                                "targets": 2
+                            }],
+                            "order": [
+                                [2, 'asc']
+                            ],
+                            "displayLength": 25,
+                            "drawCallback": function (settings) {
+                                var api = this.api();
+                                var rows = api.rows({
+                                    page: 'current'
+                                }).nodes();
+                                var last = null;
+                                api.column(2, {
+                                    page: 'current'
+                                }).data().each(function (group, i) {
+                                    if (last !== group) {
+                                        $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                        last = group;
+                                    }
+                                });
+                            }
+                        });
+                        // Order by the grouping
+                        $('#example tbody').on('click', 'tr.group', function () {
+                            var currentOrder = table.order()[0];
+                            if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                                table.order([2, 'desc']).draw();
+                            } else {
+                                table.order([2, 'asc']).draw();
+                            }
+                        });
+                    });
+                });
+                $('#example23').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+            </script>
+
+
+
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+           
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+
+       
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+
+    @{
+        Html.RenderPartial("Footer");
+    }
+
+
+
+
+</body>

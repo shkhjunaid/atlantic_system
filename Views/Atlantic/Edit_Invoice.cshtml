@@ -1,0 +1,579 @@
+﻿@model Atlantic_Project.Models.Atlantic_Invoice
+<body class="fix-header fix-sidebar card-no-border">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    @*<div class="preloader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+            </svg>
+        </div>*@
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    @*<div id="main-wrapper">*@
+    <!-- ============================================================== -->
+    <!-- Topbar header - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    @{
+        Html.RenderPartial("Header");
+    }
+    <!-- ============================================================== -->
+    <!-- End Topbar header -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    @{
+        Html.RenderPartial("Side_Navigation");
+    }
+    <!-- ============================================================== -->
+    <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <div class="page-wrapper" onload="abc();">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+
+        
+
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h3 class="text-themecolor">New Atlantic Invoice</h3>
+            </div>
+            <div class="col-md-7 align-self-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="~/Admin/Index">Home</a></li>
+                    <li class="breadcrumb-item">Main Menu</li>
+                    <li class="breadcrumb-item custom_lime_green active">Add New Invoice</li>
+                </ol>
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <!-- Row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card card-outline-info">
+
+                        <div class="card-body">
+                            <form method="post" action="@Url.Action("Edit_Invoice", "Atlantic")" data-parsley-validate class="" enctype="multipart/form-data">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-7"></div>
+                                        <div class="col-md-5">
+                                            <ul class="navbar-nav">
+                                                <li class="font-medium pull-right">Invoice No. <span class="pull-right"><input class="invoice_top_input" type="text" value="@Model.Id" /></span></li>
+                                                <li class="font-medium p-t-5"><span>Date </span><span class="pull-right"><input id="invoice_date" name="invoice_date" class="invoice_top_input" type="text" value="@Model.Invoice_Date" style="width:166px!important;" /></span></li>
+                                                @*<li class="font-medium p-t-5"><span>Sales Person </span><span class="pull-right"><input class="invoice_top_input" type="text" value="@Session["admin_name"]" readonly /></span></li>*@
+
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="row p-t-20">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Sold To</label>
+                                                <input type="text" name="sold_to" id="sold_to" class="form-control" required placeholder="Name" onkeypress="validation_alphabetical(event)" value="@Model.Sold_Name">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <label class="control-label">Address</label>
+                                                <input type="text" name="sold_address_house" id="sold_address_house" class="form-control" required placeholder="Address" value="@Model.Sold_House_Address">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label">City</label>
+                                                <input type="text" class="form-control" name="sold_area_address" id="area_address_house" required placeholder="Town, City" value="@Model.Sold_Area_Address">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Email</label>
+                                                <input type="email" class="form-control" name="sold_email" id="sold_email" required placeholder="Email" value="@Model.Sold_Email">
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <div class="row p-t-10">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Ship To</label>
+                                                <input type="text" name="ship_to" id="ship_to" class="form-control" required placeholder="Name" onkeypress="validation_alphabetical(event)" value="@Model.Ship_Name">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <label class="control-label">Address</label>
+                                                <input type="text" name="ship_address_house" id="ship_address_house" class="form-control" required placeholder="Address" value="@Model.Ship_House_Address">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label">City</label>
+                                                <input type="text" class="form-control" name="ship_area_address" id="ship_area_address" required placeholder="Town, City" value="@Model.Ship_Area_Address">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Email</label>
+                                                <input type="text" class="form-control" name="ship_email" id="ship_email" required placeholder="Email" value="@Model.Ship_Email">
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+
+
+                                    <div class="row p-t-10">
+                                       
+
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <label class="control-label">Person Name </label>
+                                                <input type="text" name="ship_person_name" id="ship_person_name" class="form-control" required placeholder="Name" value="@Model.Person_Name">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Phone</label>
+                                                <input type="text" name="ship_phone" id="ship_phone" class="form-control" required placeholder="Phone" onkeypress="validation_numeric(event)" value="@Model.Ship_Phone">
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="row p-t-10">
+                                        <div class="table-responsive p-t-10">
+                                            <table id="myTable" class="table firstrow">
+                                                <thead>
+                                                    <tr class="bg-dark">
+                                                        <th class="text-center border_right_td">SHIP VIA</th>
+                                                        <th class="text-center border_right_td">F.O.B</th>
+                                                        <th class="text-center border_right_td">EST. Ship DATE</th>
+                                                        <th class="text-center border_right_td">SLM</th>
+                                                        <th class="text-center">CUST.P.O.#</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr>
+                                                        <td class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="Ship Via" name="ship_via" value="@Model.Ship_Via"/></td>
+                                                        <td class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="F.O.B" name="fob" value="@Model.FOB" /></td>
+                                                        <td class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="EST. Ship Date" id="est_ship_date" name="est_ship_date" value="@Model.Est_Ship_Date" /></td>
+                                                        <td class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="SLM" name="slm" value="@Model.SLM" /></td>
+                                                        <td class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="CUST.P.O.#" name="cust_po" value="@Model.Cust_PO" /></td>
+
+
+                                                    </tr>
+
+
+
+                                                </tbody>
+                                            </table>
+                                            <script>
+                                                
+                                            </script>
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <hr>
+
+
+
+                                    <div class="row p-t-10">
+
+                                        <div class="table-responsive p-t-10">
+                                            <table class="table firstrow">
+                                                <thead>
+                                                    <tr class="">
+                                                        <th class="bg-dark text-center">Terms</th>
+                                                        <th class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="Terms" name="terms" value="@Model.Terms" /></th>
+                                                        <th class="bg-dark text-center">F &amp; C</th>
+                                                        <th class="text-center"><input class="static_width_td" type="text" placeholder="F&C" name="f_c" value="@Model.FC" /></th>
+
+                                                    </tr>
+                                                </thead>
+
+                                            </table>
+
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="row p-t-10">
+                                        <div class="table-responsive p-t-10">
+                                            <table id="myTable" class="table firstrow">
+                                                <thead>
+                                                    <tr class="bg-dark">
+                                                        <th class="text-center border_right_td">Item/Description</th>
+                                                        <th width="5%" class="text-center border_right_td">Quantity</th>
+                                                        <th class="text-center border_right_td">Footage</th>
+                                                        <th class="text-center border_right_td">Price</th>
+                                                        <th class="text-center">Amount</th>
+                                                        <th class="text-center">Actions</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if (ViewBag.products != null)
+                                                    {
+                                                        var counter_val = 1;
+                                                        
+                                                        foreach (var item in ViewBag.products)
+                                                        {
+                                                            
+
+                                                            <tr class="" id="@String.Concat("previous_row_remove",counter_val)">
+                                                                <td class="text-center border_right_td"><textarea class="static_width_td" placeholder="Description" name="description" id="@String.Concat("description", counter_val)" required>@item.Item_Description</textarea></td>
+                                                                <td width="12%" class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="quantity" id="@String.Concat("quantity", counter_val)" onkeypress="validation_numeric(event)" value="@item.Quantity" required /></td>
+                                                                <td width="12%" class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="footage" id="@String.Concat("footage", counter_val)" onkeyup="Total(@counter_val)" onkeypress="validation_numeric(event)" value="@item.Footage" required /></td>
+                                                                <td width="12%" class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="price" id="@String.Concat("price", counter_val)" onkeyup="Total(@counter_val)" onkeypress="validation_numeric(event)" value="@item.Price" required /></td>
+                                                                <td width="12%" class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="deposit" id="@String.Concat("deposit", counter_val)" value="@item.Deposit" readonly required /></td>
+                                                                <td width="9%" class="text-center border_right_td">
+                                                                    <a class="m-l-10 plus_hover add_button" href="javascript:;"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                                    <a class="m-l-10" id="@String.Concat("rm_btn_previous",counter_val)" href="javascript:;" onclick="Remove_Row_Old(@counter_val)"><i class="fa fa-trash-o red_color" aria-hidden="true"></i></a>
+                                                                </td>
+
+                                                            </tr>
+                                                            { counter_val++; }
+                                                        }
+                                                    }
+
+
+                                                </tbody>
+
+                                                <tbody class="field_wrapper"></tbody>
+
+                                            </table>
+
+                                            <input type="text" name="rowCounterrr" id="rowCounter" value="@ViewBag.products.Count" />
+
+                                            <script>
+                                                function Total(id) {
+                                                    //alert(id);
+                                                    var footage = $("#footage" + id).val();
+
+                                                    //alert(footage);
+                                                    var mbf = footage / 1000;
+                                                    var price = $("#price" + id).val();
+
+                                                    var deposit = price * mbf;
+
+                                                    $("#deposit" + id).val(deposit);
+
+                                                    var row_count = $("#rowCounter").val();
+                                                    //alert(row_count);
+                                                    var check = 0;
+                                                    var total_price = 0;
+                                                    var a_price = 0;
+
+                                                    for (i = 1; i <= row_count ; ++i) {
+
+                                                        check = document.getElementById('deposit' + i);
+
+                                                        //alert("CHECK" + check);
+
+                                                        if (check === null) {
+
+                                                        }
+                                                        else {
+                                                            if (check !== null) {
+
+                                                                total_price = document.getElementById('deposit' + i).value;
+
+                                                                a_price = +total_price + +a_price;
+                                                            }
+                                                            else {
+
+                                                                row_count = +row_count + +1;
+                                                                //alert("SIZE" + size);
+                                                            }
+                                                        }
+
+
+                                                        //alert("i  " + i + "   totaaaal    " + totaaaal + "  a  " + a);
+                                                    }
+
+
+                                                    $("#total_deposit").val(a_price);
+
+                                                    var check2 = 0;
+                                                    var total_footage = 0;
+                                                    var a_footage = 0;
+
+                                                    for (i = 1; i <= row_count ; ++i) {
+
+                                                        check2 = document.getElementById('footage' + i);
+                                                        if (check2 === null) {
+
+                                                        }
+                                                        else {
+                                                            if (check2 !== null) {
+
+                                                                total_footage = document.getElementById('footage' + i).value;
+
+                                                                a_footage = +total_footage + +a_footage;
+                                                            }
+                                                            else {
+
+                                                                row_count = +row_count + +1;
+                                                                //alert("SIZE" + size);
+                                                            }
+                                                        }
+                                                        //alert("CHECK" + check);
+
+
+
+
+                                                        //alert("i  " + i + "   totaaaal    " + totaaaal + "  a  " + a);
+                                                    }
+
+                                                    
+                                                    $("#total_units").val(a_footage);
+
+                                                }
+                                            </script>
+                                            @*------------------Hospital Admissions Add More Fields-----------------*@
+
+                                            <script>
+
+                                                var addButton = $('.add_button');
+                                                var wrapper = $('.field_wrapper');
+                                                var counter = @ViewBag.products.Count + 1;
+                                                //alert(counter);
+                                                $(addButton).click(function () {
+                                                    //alert("asasas");
+                                                    var fieldHTML = '<tr class="r"><td class="text-center border_right_td"><textarea class="static_width_td" placeholder="Description" name="description" id="description' + counter + '"></textarea></td><td width="12%" class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="quantity" id="quantity' + counter + '" onkeypress="validation_numeric(event)"/></td><td width="12%" class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="footage" id="footage' + counter + '" onkeyup="Total(' + counter + ')" onkeypress="validation_numeric(event)" /></td><td width="12%" class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="price" id="price' + counter + '" onkeyup="Total(' + counter + ')" onkeypress="validation_numeric(event)" /></td><td width="12%" class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="deposit" id="deposit' + counter + '" readonly/></td><td width="9%" class="text-center border_right_td"><a class="m-l-10 plus_hover add_button" href="javascript:;"><i class="fa fa-plus" aria-hidden="true"></i></a><a class="m-l-10 remove_button" onclick="Total(' + counter + ')" href="#"><i class="fa fa-trash-o red_color" aria-hidden="true"></i></a></td></tr>'
+                                                    $(wrapper).append(fieldHTML);
+
+                                                    counter = +counter + +1;
+
+                                                    var row_count = $("#rowCounter").val();
+                                                    row_count = +row_count + +1;
+                                                    $("#rowCounter").val(row_count);
+                                                });
+
+                                                $(wrapper).on('click', '.remove_button', function (e) {
+                                                    alert();
+                                                    var row_count = $("#rowCounter").val();
+                                                    row_count = row_count - 1;
+                                                    $("#rowCounter").val(row_count);
+                                                    e.preventDefault();
+                                                    $(this).closest('.r').remove();
+                                                });
+
+
+
+                                                //$('.previous_row_remove').on('click', '.rm_btn_previous', function (e) {
+                                                //    //alert("xxxxxxx");
+                                                //    e.preventDefault();
+                                                //    $(this).closest('.previous_row_remove').remove();
+                                                //});
+
+
+                                                function Remove_Row_Old(id) {
+                                                    var row_count = $("#rowCounter").val();
+                                                    row_count = row_count - 1;
+                                                    $("#rowCounter").val(row_count);
+
+                                                    //e.preventDefault();
+                                                   
+
+                                                    var footage = $("#footage" + id).val();
+                                                    var dep = $("#deposit" + id).val();
+
+                                                    //alert("footage   " + footage + "  dep  " +dep);
+
+                                                    var total_uni = $("#total_units").val();
+                                                    var total_dep = $("#total_deposit").val();
+
+                                                    //alert("total_uni   " + total_uni  + "  total_dep " +total_dep);
+
+                                                    var t_footage = total_uni - footage;
+                                                    var t_deposit = total_dep - dep;
+
+
+                                                    //alert("t_footage   " + t_footage + "   t_deposit " + t_deposit);
+                                                    //<!-- document.getElementById("total_units").value=t_footage; -->
+                                                    //<!-- document.getElementById("total_deposit").value=t_deposit; -->
+                                                    //alert();
+                                                    $("#total_units").val(t_footage);
+                                                    $("#total_deposit").val(t_deposit);
+                                                    $('#previous_row_remove' + id).remove();
+                                                }
+
+
+                                            </script>
+                                            @*------------------Hospital Admissions Add More Fields-----------------*@
+
+
+
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row p-t-10">
+                                        <div class="table-responsive p-t-10">
+                                            <table id="myTable" class="table firstrow">
+                                                <thead>
+                                                    <tr class="bg-dark">
+                                                        <th class="text-center border_right_td">Total Freight</th>
+                                                        <th class="text-center border_right_td">Credit Card Fee</th>
+                                                        <th class="text-center border_right_td">Total Tax</th>
+                                                        <th class="text-center border_right_td">Total Units</th>
+                                                        <th class="text-center">Total Deposit</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr>
+                                                        <td class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="total_freight" onkeypress="validation_numeric(event)" value="@Model.Total_Freight" /></td>
+                                                        <td class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="credit_card_fee" onkeypress="validation_numeric(event)" value="@Model.Credit_Card_Fee" /></td>
+                                                        <td class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="total_tax" onkeypress="validation_numeric(event)" value="@Model.Total_Tax" /></td>
+                                                        <td class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="total_units" id="total_units" readonly value="@Model.Total_Units" /></td>
+                                                        <td class="text-center border_right_td"><input class="static_width_td" type="text" placeholder="0.00" name="total_deposit" id="total_deposit" readonly value="@Model.Total_Deposit" /></td>
+
+                                                    </tr>
+
+
+
+                                                </tbody>
+                                            </table>
+
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-actions  m-t-40">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    @*<div class="col-md-4"></div>*@
+                                                    <div class="col-md-4">
+                                                        <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> Submit</button>
+                                                        <button type="button" class="btn btn-danger">Cancel</button>
+                                                    </div>
+                                                    @*<div class="col-md-4"></div>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <div style="margin-bottom:200px">
+                    </div>
+                    <div class="clear"></div>
+
+                </div>
+
+
+
+            </div>
+            <!-- Row -->
+            <!-- Row -->
+            <!-- ============================================================== -->
+            <!-- End PAge Content -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Right sidebar -->
+            <!-- ============================================================== -->
+            <!-- .right-sidebar -->
+            <!-- ============================================================== -->
+            <!-- End Right sidebar -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <!-----------------------IMAGE VALIDATION----------------->
+    <script>
+
+    </script>
+
+    <!-----------------------IMAGE VALIDATION----------------->
+
+
+</body>
+
+<!-- ============================VALIDATION EVENT================================== -->
+
+
+<script>
+
+    @*<!-- ============================DATE JQUERY================================== -->*@
+    jQuery('#est_ship_date').datepicker({
+        format: 'dd-M-yyyy',
+        autoclose: true,
+        todayHighlight: true,
+
+    });
+    jQuery('#invoice_date').datepicker({
+        format: 'dd-M-yyyy',
+        autoclose: true,
+        todayHighlight: true,
+
+    });
+    @*<!-- ============================DATE JQUERY================================== -->*@
+</script>

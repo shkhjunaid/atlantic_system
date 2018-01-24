@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" http-equiv="X-UA-Compatible" content="IE=edge">
+    @*<title>Atlantic System</title>*@
+    <title>content</title>
+
+
+
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+
+    <!----------------------------CSS---------------------------->
+
+    <link href="~/content/css/blue.css" rel="stylesheet" />
+    <link href="~/content/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/content/css/dropify.min.css" rel="stylesheet" />
+    @*<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/mint-choc/jquery-ui.css" rel="stylesheet" />*@
+    <link href="~/content/css/jquery-ui.css" rel="stylesheet" />
+    <link href="~/content/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/content/css/morris.css" rel="stylesheet" />
+    <link href="~/content/css/style.css" rel="stylesheet" />
+    <link href="~/content/css/chosen.css" rel="stylesheet" />
+    <link href="~/content/css/spinners.css" rel="stylesheet" />
+    <link href="~/content/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="~/content/css/media_queries.css" rel="stylesheet" />
+    <link href="~/content/css/fileinput.min.css" rel="stylesheet" />
+
+
+    <link href="~/content/css/sweet-alert.min.css" rel="stylesheet" />
+    <link href="~/content/css/sweetalert.css" rel="stylesheet" />
+
+    <!----------------------------CSS---------------------------->
+
+
+
+    <script src="~/content/scripts/js/jquery.min.js"></script>
+    <script src="~/content/scripts/js/chosen.jquery.js"></script>
+    <script src="~/content/scripts/js/popper.min.js"></script>
+    <script src="~/content/scripts/js/bootstrap.min.js"></script>
+    <script src="~/content/scripts/js/jquery.slimscroll.js"></script>
+    <script src="~/content/scripts/js/sidebarmenu.js"></script>
+    <script src="~/content/scripts/js/sticky-kit.min.js"></script>
+    <script src="~/content/scripts/js/custom.min.js"></script>
+
+    <script src="~/content/scripts/js/dropify.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Basic
+            $('.dropify').dropify();
+
+            // Translated
+            $('.dropify-fr').dropify({
+                messages: {
+                    default: 'Glissez-déposez un fichier ici ou cliquez',
+                    replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                    remove: 'Supprimer',
+                    error: 'Désolé, le fichier trop volumineux'
+                }
+            });
+
+            // Used events
+            var drEvent = $('#input-file-events').dropify();
+
+            drEvent.on('dropify.beforeClear', function (event, element) {
+                return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+            });
+
+            drEvent.on('dropify.afterClear', function (event, element) {
+                alert('File deleted');
+            });
+
+            drEvent.on('dropify.errors', function (event, element) {
+                console.log('Has Errors');
+            });
+
+            var drDestroy = $('#input-file-to-destroy').dropify();
+            drDestroy = drDestroy.data('dropify')
+            $('#toggleDropify').on('click', function (e) {
+                e.preventDefault();
+                if (drDestroy.isDropified()) {
+                    drDestroy.destroy();
+                } else {
+                    drDestroy.init();
+                }
+            })
+        });
+    </script>
+
+    <script src="~/content/scripts/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/content/scripts/js/jquery.datatables.min.js"></script>
+
+
+
+
+
+    <script src="~/content/scripts/images-js/jquery.filer.min.js"></script>
+    <script src="~/scripts/sweet-alert.min.js"></script>
+    <script src="~/scripts/sweetalert.min.js"></script>
+
+
+    <script src="~/scripts/atlantic_script.js"></script>
+
+
+</head>
+<body>
+
+
+    @RenderBody()
+
+</body>
+</html>

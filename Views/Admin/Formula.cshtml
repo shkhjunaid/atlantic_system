@@ -1,0 +1,383 @@
+﻿<body class="fix-header fix-sidebar card-no-border">
+
+
+    @{
+        Html.RenderPartial("Header");
+    }
+
+    @{
+        Html.RenderPartial("Side_Navigation");
+    }
+
+    <div class="page-wrapper">
+
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h3 class="text-themecolor">Formula's Calculation</h3>
+            </div>
+            <div class="col-md-7 align-self-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="~/Admin/Index">Home</a></li>
+                    <li class="breadcrumb-item">Main Menu</li>
+                    <li class="breadcrumb-item custom_lime_green active">View Formula's</li>
+                </ol>
+            </div>
+        </div>
+        
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card card-outline-info">
+
+                        <div class="card-body">
+                            <form method="post" action="@Url.Action("Setting", "Atlantic")" data-parsley-validate class="" enctype="multipart/form-data">
+                                <div class="form-body">
+
+                                    <!------------------------SQUARE FOOT------------------------------->
+
+                                    <h3 class="box-title m-t-10">Square Foot</h3>
+                                    <hr>
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Length</label>
+                                                <input type="text" id="square_foot_length" class="form-control"  placeholder="Foot" onkeypress="validation_numeric(event)">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Width</label>
+                                                <input type="text" id="square_foot_width" class="form-control" placeholder="Inches" onkeypress="validation_numeric(event)">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group ">
+                                                <label class="control-label">Total</label>
+                                                <input type="text" id="square_foot_total" class="form-control" placeholder="Total" onkeypress="validation_numeric(event)">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-------------------------SQUARE FOOT------------------------------->
+
+
+                                    <!------------------------SQUARE METER------------------------------->
+
+                                    <h3 class="box-title m-t-10">Square Meter</h3>
+                                    <hr>
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Length</label>
+                                                <input type="text" id="square_meter_length" class="form-control" placeholder="Meter" onkeypress="validation_numeric(event)">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Width</label>
+                                                <input type="text" id="square_meter_width" class="form-control" placeholder="Inches" onkeypress="validation_numeric(event)">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group ">
+                                                <label class="control-label">Total</label>
+                                                <input type="text" id="square_meter_total" class="form-control" placeholder="Total" onkeypress="validation_numeric(event)">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!------------------------SQUARE METER------------------------------->
+
+
+                                    <!------------------------CUBIC FOOT------------------------------->
+
+                                    <h3 class="box-title m-t-10">Cubic Foot</h3>
+                                    <hr>
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Length</label>
+                                                <input type="text" id="cubic_foot_length" class="form-control" placeholder="Foot" onkeypress="validation_numeric(event)">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Width</label>
+                                                <input type="text" id="cubic_foot_width" class="form-control" placeholder="Inches" onkeypress="validation_numeric(event)">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Height</label>
+                                                <input type="text" id="cubic_foot_height" class="form-control" placeholder="Foot" onkeypress="validation_numeric(event)">
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <label class="control-label">Total</label>
+                                                <input type="text" id="cubic_foot_total" class="form-control" placeholder="Total" onkeypress="validation_numeric(event)">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!------------------------CUBIC FOOT------------------------------->
+
+
+                                    <!------------------------CUBIC METER------------------------------->
+
+
+                                    <h3 class="box-title m-t-10">Cubic Meter</h3>
+                                    <hr>
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Length</label>
+                                                <input type="text" id="cubic_meter_length" class="form-control" placeholder="Meter" onkeypress="validation_numeric(event)">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Width</label>
+                                                <input type="text" id="cubic_meter_width" class="form-control" placeholder="Inches" onkeypress="validation_numeric(event)">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Height</label>
+                                                <input type="text" id="cubic_meter_height" class="form-control" placeholder="Meter" onkeypress="validation_numeric(event)">
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <label class="control-label">Total</label>
+                                                <input type="text" id="cubic_meter_total" class="form-control" placeholder="Total" onkeypress="validation_numeric(event)">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!------------------------CUBIC METER------------------------------->
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <div style="margin-bottom:200px">
+                    </div>
+                    <div class="clear"></div>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        //-----------------------SQUARE FOOT-----------------------------
+
+        $("#square_foot_width").keyup(function () {
+            var length = $("#square_foot_length").val();
+            var width = $("#square_foot_width").val();
+
+            width_inch = (width / 12).toFixed(2);
+            var calculation = length * width_inch;
+
+
+            $("#square_foot_total").val(calculation);
+        })
+
+        $("#square_foot_length").keyup(function () {
+            var length = $("#square_foot_length").val();
+            var width = $("#square_foot_width").val();
+
+            width_inch = (width / 12).toFixed(2);
+            var calculation = length * width_inch;
+
+
+            $("#square_foot_total").val(calculation);
+        })
+
+        //-----------------------SQUARE FOOT-----------------------------
+
+
+        //-----------------------SQUARE METER-----------------------------
+
+        $("#square_meter_width").keyup(function () {
+            var length = $("#square_meter_length").val();
+            var width = $("#square_meter_width").val();
+
+            width_inch = (width / 12).toFixed(2);
+            var calculation = length * width_inch;
+
+
+            $("#square_meter_total").val(calculation);
+        })
+
+        $("#square_meter_length").keyup(function () {
+            var length = $("#square_meter_length").val();
+            var width = $("#square_meter_width").val();
+
+            width_inch = (width / 12).toFixed(2);
+            var calculation = length * width_inch;
+
+
+            $("#square_meter_total").val(calculation);
+        })
+
+        //-----------------------SQUARE METER-----------------------------
+
+
+
+        //-----------------------CUBIC FOOT-----------------------------
+
+        $("#cubic_foot_length").keyup(function () {
+            //alert();
+            var length1 = $("#cubic_foot_length").val();
+            var width1 = $("#cubic_foot_width").val();
+            var height1 = $("#cubic_foot_height").val();
+
+            width_inch1 = (width1 / 12).toFixed(2);
+            var calculation = length1 * width_inch1 * height1;
+
+
+            $("#cubic_foot_total").val(calculation);
+        })
+
+        $("#cubic_foot_width").keyup(function () {
+            var length = $("#cubic_foot_length").val();
+            var width = $("#cubic_foot_width").val();
+            var height = $("#cubic_foot_height").val();
+
+            width_inch = (width / 12).toFixed(2);
+            var calculation = length * width_inch * height;
+
+
+            $("#cubic_foot_total").val(calculation);
+        })
+
+        $("#cubic_foot_height").keyup(function () {
+            var length = $("#cubic_foot_length").val();
+            var width = $("#cubic_foot_width").val();
+            var height = $("#cubic_foot_height").val();
+
+            width_inch = (width / 12).toFixed(2);
+            var calculation = length * width_inch * height;
+
+
+            $("#cubic_foot_total").val(calculation);
+        })
+
+
+        //-----------------------CUBIC FOOT-----------------------------
+
+        //-----------------------CUBIC FOOT-----------------------------
+
+        $("#cubic_meter_length").keyup(function () {
+            //alert();
+            var length1 = $("#cubic_meter_length").val();
+            var width1 = $("#cubic_meter_width").val();
+            var height1 = $("#cubic_meter_height").val();
+
+            width_inch1 = (width1 / 12).toFixed(2);
+            var calculation = length1 * width_inch1 * height1;
+
+
+            $("#cubic_meter_total").val(calculation);
+        })
+
+        $("#cubic_meter_width").keyup(function () {
+            var length = $("#cubic_meter_length").val();
+            var width = $("#cubic_meter_width").val();
+            var height = $("#cubic_meter_height").val();
+
+            width_inch = (width / 12).toFixed(2);
+            var calculation = length * width_inch * height;
+
+
+            $("#cubic_meter_total").val(calculation);
+        })
+
+        $("#cubic_meter_height").keyup(function () {
+            var length = $("#cubic_meter_length").val();
+            var width = $("#cubic_meter_width").val();
+            var height = $("#cubic_meter_height").val();
+
+            width_inch = (width / 12).toFixed(2);
+            var calculation = length * width_inch * height;
+
+
+            $("#cubic_meter_total").val(calculation);
+        })
+
+
+        //-----------------------CUBIC FOOT-----------------------------
+
+        //$("#square_foot_width").keyup(function () {
+        //    var value = $("#square_foot_width").val();
+        //    var calculation = value;
+        //    $("#square_foot_length").val(calculation);
+        //})
+
+        $("#formula2").keyup(function () {
+            var value = $("#formula2").val();
+            var calculation = value;
+            $("#formula22").val(calculation);
+        })
+
+        $("#formula22").keyup(function () {
+            var value = $("#formula22").val();
+            var calculation = value;
+            $("#formula2").val(calculation);
+        })
+
+        $("#formula3").keyup(function () {
+            var value = $("#formula3").val();
+            var calculation = value;
+            $("#formula33").val(calculation);
+        })
+
+        $("#formula33").keyup(function () {
+            var value = $("#formula33").val();
+            var calculation = value;
+            $("#formula3").val(calculation);
+        })
+
+
+    </script>
+
+    @{
+        Html.RenderPartial("Footer");
+    }
+
+</body>
